@@ -1,0 +1,17 @@
+{% extends 'admin_control_panel.html' %}
+
+{% block subcontent %}
+  <h2>Detalji - {{ predmet.naziv }}</h2>
+  <h3>Redovni:</h3>
+  <ul>
+    {% for student in redovni %}
+      <li>{{ student }}</li>
+    {% endfor %}
+  </ul>
+  <h3>Izvanredni:</h3>
+  <ul>
+    {% for student in izvanredni %}
+      <li>{{ student }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

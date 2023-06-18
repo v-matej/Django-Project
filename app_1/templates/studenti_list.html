@@ -1,0 +1,36 @@
+{% extends 'admin_control_panel.html' %}
+
+{% block subcontent %}
+  <h2>Lista Studenata</h2>
+  <form action="/admin/control_panel/student_add" method="get" style="display: inline;">
+    <button type="submit" style="padding: 6px 12px; background-color: #4CAF50; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+      Dodaj novog studenta
+    </button>
+  </form>  
+  <br><br>
+  
+  <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th style="padding: 8px; border-bottom: 1px solid #ddd;">Ime studenta</th>
+        <th style="padding: 8px; border-bottom: 1px solid #ddd;">Prezime studenta</th>
+        <th style="padding: 8px; border-bottom: 1px solid #ddd;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in studenti %}
+        <tr style="background-color: {% cycle '#fff' '#f9f9f9' %};">
+          <td style="padding: 8px; border-bottom: 1px solid #ddd; text-align: center;">{{ student.first_name }}</td>
+          <td style="padding: 8px; border-bottom: 1px solid #ddd; text-align: center;">{{ student.last_name }}</td>
+          <td style="padding: 8px; border-bottom: 1px solid #ddd; text-align: center;">
+            <form action="{% url 'student_details' student.id %}" method="get" style="display: inline;">
+              <button type="submit" style="padding: 6px 12px; background-color: #4CAF50; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+                Detalji
+              </button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

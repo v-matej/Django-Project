@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h4>Professor</h4>
+  <nav class="navbar" style="background-color: #f5f5f5; padding: 10px;">
+    <ul style="list-style: none; margin: 0; padding: 0;">
+      <li style="display: inline-block; margin-right: 10px;">
+        <form action="{% url 'logout' %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </nav>
+
+  <h3>Predmeti:</h3>
+  <table class="predmeti-table" style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th style="padding: 10px; background-color: #f5f5f5; border-bottom: 1px solid #ddd;">Predmet</th>
+        <th style="padding: 10px; background-color: #f5f5f5; border-bottom: 1px solid #ddd;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for assignment in professor.predmetiassignment_set.all %}
+        <tr>
+          <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ assignment.predmet.name }} - {{ assignment.predmet.kod }}</td>
+          <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center;">
+            <button style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;" onclick="location.href='{% url 'upisani_studenti_prof' assignment.predmet.id %}'">Upisani studenti</button>
+            <button style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;" onclick="location.href='{% url 'prosli_studenti_prof' assignment.predmet.id %}'">Prošli studenti</button>
+            <button style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;" onclick="location.href='{% url 'pali_studenti_prof' assignment.predmet.id %}'">Pali studenti</button>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="subcontent">
+    {% block subcontent %}
+
+    {% endblock %}
+  </div>
+{% endblock %}

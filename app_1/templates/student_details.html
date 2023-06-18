@@ -1,0 +1,31 @@
+{% extends 'admin_control_panel.html' %}
+
+{% block subcontent %}
+  <h2 style="text-align: center; margin-bottom: 20px;">Detalji Studenta</h2>
+  <table style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <th style="background-color: #f2f2f2; padding: 8px; text-align: left;">Detalji</th>
+      <th style="background-color: #f2f2f2; padding: 8px; text-align: left;">Vrijednost</th>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Ime:</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">{{ student.first_name }}</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Prezime:</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">{{ student.last_name }}</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Broj indeksa:</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">{{ student.username }}</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Status:</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">{{ student.get_status_display }}</td>
+    </tr>
+  </table>
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="{% url 'student_edit' student.id %}" style="text-decoration: none; background-color: #4CAF50; color: white; padding: 6px 12px; border-radius: 4px; margin-right: 10px;">Uredi studenta</a>
+    <a href="{% url 'student_upisni_list' student.id %}" style="text-decoration: none; background-color: #4CAF50; color: white; padding: 6px 12px; border-radius: 4px;">Upisni list</a>
+  </div>
+{% endblock %}

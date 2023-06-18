@@ -1,0 +1,28 @@
+{% extends 'admin_control_panel.html' %}
+
+{% block subcontent %}
+  <h2 style="margin-bottom: 10px;">Edit Student</h2>
+  <form method="post" action="{% url 'student_edit' student_id=student.id %}" style="margin-top: 10px;">
+    {% csrf_token %}
+    <div class="form-group" style="margin-bottom: 10px;">
+      <label for="first_name">First Name:</label>
+      <input class="form-input" type="text" name="first_name" id="first_name" value="{{ student.first_name }}" required style="padding: 5px;">
+    </div>
+    <div class="form-group" style="margin-bottom: 10px;">
+      <label for="last_name">Last Name:</label>
+      <input class="form-input" type="text" name="last_name" id="last_name" value="{{ student.last_name }}" required style="padding: 5px;">
+    </div>
+    <div class="form-group" style="margin-bottom: 10px;">
+      <label for="username">Username:</label>
+      <input class="form-input" type="text" name="username" id="username" value="{{ student.username }}" required style="padding: 5px;">
+    </div>
+    <div class="form-group" style="margin-bottom: 10px;">
+      <label for="status">Status:</label>
+      <select class="form-input" name="status" id="status" required style="padding: 5px;">
+        <option value="red" {% if student.status == 'red' %}selected{% endif %}>Redovan</option>
+        <option value="izv" {% if student.status == 'izv' %}selected{% endif %}>Izvanredan</option>
+      </select>
+    </div>
+    <button class="btn-submit" type="submit" style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Save Changes</button>
+  </form>
+{% endblock %}

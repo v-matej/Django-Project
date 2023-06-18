@@ -1,0 +1,49 @@
+{% extends 'professor_control_panel.html' %}
+
+{% block subcontent %}
+  <style>
+    .student-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .student-table th,
+    .student-table td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .student-table th {
+      background-color: #f5f5f5;
+    }
+
+    .student-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
+
+  <h1>Upisani studenti</h1>
+  <h3>{{ predmet.name }}</h3>
+  <table class="student-table">
+    <thead>
+      <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+        {% if student.upisni_list.first.status == 'fail' %}
+        <tr>
+          <td>{{ student.first_name }}</td>
+          <td>{{ student.last_name }}</td>
+          <td>{{ student.email }}</td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

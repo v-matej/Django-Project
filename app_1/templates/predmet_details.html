@@ -1,0 +1,82 @@
+{% extends 'admin_control_panel.html' %}
+
+{% block subcontent %}
+
+<style>
+  h2 {
+    margin-bottom: 16px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .button-wrapper {
+    margin-top: 16px;
+  }
+
+  .button-wrapper a {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .button-wrapper a:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<h2>Detalji o predmetu</h2>
+
+<table>
+  <tr>
+    <th>Naziv</th>
+    <td>{{ predmet.name }}</td>
+  </tr>
+  <tr>
+    <th>Kod</th>
+    <td>{{ predmet.kod }}</td>
+  </tr>
+  <tr>
+    <th>Program</th>
+    <td>{{ predmet.program }}</td>
+  </tr>
+  <tr>
+    <th>ECTS</th>
+    <td>{{ predmet.ects }}</td>
+  </tr>
+  <tr>
+    <th>Semestar (redovni)</th>
+    <td>{{ predmet.sem_red }}</td>
+  </tr>
+  <tr>
+    <th>Semestar (izvanredni)</th>
+    <td>{{ predmet.sem_izv }}</td>
+  </tr>
+  <tr>
+    <th>Izborni</th>
+    <td>{{ predmet.get_izborni_display }}</td>
+  </tr>
+</table>
+
+<div class="button-wrapper">
+  <a href="{% url 'predmet_edit' predmet.id %}">Uredi detalje</a>
+</div>
+
+{% endblock %}

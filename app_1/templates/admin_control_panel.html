@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar-item {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .navbar-item.right {
+    margin-left: auto;
+  }
+
+  .navbar-item button {
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .logout-button {
+    background-color: #f44336;
+  }
+
+  .logout-button:hover {
+    background-color: #d32f2f;
+  }
+</style>
+
+  <nav>
+    <ul class="navbar">
+      <li class="navbar-item"><button onclick="location.href='/admin/control_panel'">Početna</button></li>
+      <li class="navbar-item"><button onclick="location.href='/admin/control_panel/predmeti_list'">Predmeti</button></li>
+      <li class="navbar-item"><button onclick="location.href='/admin/control_panel/studenti_list'">Studenti</button></li>
+      <li class="navbar-item"><button onclick="location.href='/admin/control_panel/profesori_list'">Profesori</button></li>
+      <li class="navbar-item right">
+        <form action="{% url 'logout' %}" method="POST">
+          {% csrf_token %}
+          <button class="logout-button">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="subcontent">
+    {% block subcontent %}
+
+    {% endblock %}
+  </div>
+{% endblock %}

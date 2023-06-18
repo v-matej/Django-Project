@@ -1,0 +1,26 @@
+{% extends 'admin_control_panel.html' %}
+
+{% block subcontent %}
+  <h2>Lista predmeta</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Predmet</th>
+        <th>Položeno</th>
+        <th>Redovnih</th>
+        <th>Izvanrednih</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for predmet in predmeti %}
+        <tr>
+          <td>{{ predmet.name }}</td>
+          <td>{{ predmet.ukupno_polozilo }}</td>
+          <td>{{ predmet.redovnih_polozilo }}</td>
+          <td>{{ predmet.izvarednih_polozilo }}</td>
+          <td><a href="{% url 'detalji' predmet.id %}">Detalji</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

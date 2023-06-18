@@ -1,0 +1,20 @@
+{% extends 'admin_control_panel.html' %}
+
+{% block subcontent %}
+  <div style="border: 1px solid #ccc; padding: 20px; border-radius: 5px; background-color: #f9f9f9;">
+    <h1>Assign Predmeti to Professor</h1>
+    <form method="post" action="{% url 'assign_predmet' professor_id=professor.id %}" style="max-width: 500px; margin: 0 auto;">
+      {% csrf_token %}
+      <fieldset style="border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+        {{ predmeti_form.predmeti.errors }}
+        <table style="border-collapse: collapse; width: 100%;">
+          <tbody>
+            {{ predmeti_form.predmeti }}
+          </tbody>
+        </table>
+      </fieldset>
+      <br></br>
+      <button type="submit" style="background-color: #4CAF50; color: white; padding: 8px 12px; border: none; border-radius: 4px; text-decoration: none; cursor: pointer;">Assign</button>
+    </form>
+  </div>
+{% endblock %}

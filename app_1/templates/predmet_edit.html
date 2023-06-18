@@ -1,0 +1,47 @@
+{% extends 'admin_control_panel.html' %}
+
+{% block subcontent %}
+  <h2 style="text-decoration: underline;">Uredi detalje o predmetu</h2>
+  <form method="POST" style="max-width: 500px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+    {% csrf_token %}
+    <div style="margin-bottom: 15px;">
+      <label for="name">Naziv:</label>
+      <input type="text" name="name" id="name" value="{{ predmet.name }}" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="kod">Kod:</label>
+      <input type="text" name="kod" id="kod" value="{{ predmet.kod }}" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="program">Program:</label>
+      <input type="text" name="program" id="program" value="{{ predmet.program }}" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="ects">ECTS:</label>
+      <input type="number" name="ects" id="ects" value="{{ predmet.ects }}" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="sem_red">Semestar (redovni):</label>
+      <input type="number" name="sem_red" id="sem_red" value="{{ predmet.sem_red }}" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="sem_izv">Semestar (izvanredni):</label>
+      <input type="number" name="sem_izv" id="sem_izv" value="{{ predmet.sem_izv }}" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="izborni">Izborni:</label>
+      <select name="izborni" id="izborni" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        <option value="DA" {% if predmet.izborni == 'DA' %}selected{% endif %}>da</option>
+        <option value="NE" {% if predmet.izborni == 'NE' %}selected{% endif %}>ne</option>
+      </select>
+    </div>
+
+    <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 10px;">Spremi promjene</button>
+  </form>
+{% endblock %}

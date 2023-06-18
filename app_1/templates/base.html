@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Doodle{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'seminar/css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Doodle</h1>
+  </header>
+
+  <main>
+    {% block content %}
+    {% load static %}
+    {% endblock %}
+  </main>
+
+</body>
+</html>

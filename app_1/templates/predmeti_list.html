@@ -1,0 +1,87 @@
+{% extends 'admin_control_panel.html' %}
+
+{% block subcontent %}
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #e2e2e2;
+  }
+
+  .button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .button:hover {
+    background-color: #45a049;
+  }
+
+  .button.red {
+    background-color: #f44336;
+  }
+
+  .button.red:hover {
+    background-color: #d32f2f;
+  }
+</style>
+
+<h2>Predmeti</h2>
+<a class="button" href="/admin/control_panel/predmet_add">Dodaj novi predmet</a>
+<br></br>
+<table>
+  <thead>
+    <tr>
+      <th>Naziv</th>
+      <th>Kod</th>
+      <th>Program</th>
+      <th>ECTS</th>
+      <th>Semestar (redovni)</th>
+      <th>Semestar (izvanredni)</th>
+      <th>Izborni</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for predmet in predmeti %}
+      <tr>
+        <td>{{ predmet.name }}</td>
+        <td>{{ predmet.kod }}</td>
+        <td>{{ predmet.program }}</td>
+        <td>{{ predmet.ects }}</td>
+        <td>{{ predmet.sem_red }}</td>
+        <td>{{ predmet.sem_izv }}</td>
+        <td>{{ predmet.get_izborni_display }}</td>
+        <td><a class="button" href="{% url 'predmet_details' predmet.id %}">Detalji</a></td>
+        <td><a class="button" href="{% url 'upisani_studenti' predmet.id %}">Upisani studenti</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

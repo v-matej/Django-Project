@@ -1,0 +1,14 @@
+{% extends 'admin_control_panel.html' %}
+
+{% block subcontent %}
+  <h2>Students in Last Year</h2>
+  {% if students_last_year %}
+    <ul>
+      {% for student in students_last_year %}
+        <li>{{ student.first_name }} {{ student.last_name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No students in their last year.</p>
+  {% endif %}
+{% endblock %}

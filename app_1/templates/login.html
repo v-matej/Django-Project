@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 style="margin-bottom: 10px;">Prijava</h2>
+  {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+  {% endif %}
+  <form method="post" style="margin-top: 10px;">
+    {% csrf_token %}
+    <label for="username" style="display: block; margin-bottom: 5px;">Korisničko ime:</label>
+    <input type="text" name="username" id="username" required style="padding: 5px;">
+    <label for="password" style="display: block; margin-bottom: 5px;">Lozinka:</label>
+    <input type="password" name="password" id="password" required style="padding: 5px;">
+    <button type="submit" style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; cursor: pointer; margin-top: 10px;">Prijavi se</button>
+  </form>
+{% endblock %}
+
